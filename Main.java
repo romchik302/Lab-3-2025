@@ -8,7 +8,7 @@ public class Main
 
         // Тестирование функции y = x²
         System.out.println("Квадратичная функция y = x²");
-        TabulatedFunction func = new ArrayTabulatedFunction(0, 4, 5);
+        TabulatedFunction func = new LinkedListTabulatedFunction(0, 4, 5);
 
         for (int i = 0; i < func.getPointsCount(); i++)
         {
@@ -111,8 +111,9 @@ public class Main
     private static void testExceptions()
     {
         // Некорректный конструктор
-        System.out.println("Тест конструкторов:");
+        System.out.println("\nТест конструкторов:");
 
+        System.out.println("ArrayTabulatedFunction:");
         try
         {
             new ArrayTabulatedFunction(5, 3, 4);
@@ -122,9 +123,20 @@ public class Main
         }
         System.out.println();
 
+        System.out.println("LinkedListTabulatedFunction:");
+        try
+        {
+            new LinkedListTabulatedFunction(10, 5, 3);
+            System.out.println("  Ошибка: исключение не было выброшено");
+        } catch (IllegalArgumentException e)
+        {
+            System.out.println("  Поймано: " + e.getMessage());
+        }
+        System.out.println();
+
         // Выход за границы индекса
         System.out.println("Тест индексных ошибок:");
-        TabulatedFunction testFunc = new ArrayTabulatedFunction(0, 2, 3);
+        TabulatedFunction testFunc = new LinkedListTabulatedFunction(0, 2, 3);
         try
         {
             testFunc.getPoint(10);
